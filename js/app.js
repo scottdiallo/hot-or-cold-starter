@@ -2,11 +2,11 @@ $(document).ready(function() {
     //Global variables declarations
     var secretNumber = Math.floor(Math.random() * 100) + 1;
     var guess;
-    var guessCounter;
+    var oldGuess = 0;
     var userGuess;
-	var pastGuess = [];
 	var guessList;
 	var guessHmtl;
+    var counter = [];
 
     // start a new game
     newGame();
@@ -43,7 +43,9 @@ $(document).ready(function() {
 //convert userguess to integer and generate feedback based on guess
 	function checkGuess() {
 		var userGuess = parseInt($("#userGuess").val());
-		verifyNumber();
+		verifyNumber(userGuess);
+        guessHistory(userGuess);
+        showGuessCounter(counter);
 		console.log(userGuess);
 		console.log(secretNumber);
 		if (userGuess === secretNumber){
@@ -64,25 +66,37 @@ $(document).ready(function() {
 		else  {
 			$('#feedback').text('Ice Cold!');
 	}
-	function verifyNumber(){
+	function verifyNumber(userGuess){
 		 if (userGuess < 0 || userGuess > 100){
 			 alert('you must type a number between 1 - 100');
 		 }
 	 }
 
 // tracking guesses and listing them
-function trackGuess(){
-	pastGuess[0].push(userGuess);
-	guessHmtl = '';
-	if(pastGuess[0].length){
-		$.each(pastGuess,
-			function(guess,value){
-			guessHmtl += '<li>' + value + '</li>';
-		});
-	}
+// function trackGuess(){
+// 	pastGuess[0].push(userGuess);
+// 	guessHmtl = '';
+// 	if(pastGuess[0].length){
+// 		$.each(pastGuess,
+// 			function(guess,value){
+// 			guessHmtl += '<li>' + value + '</li>';
+// 		});
+// 	}
+// }
+//
+//
+// function guessCount(){
+// 	count++;
+// }
+// count the number of guesses
+function showGuessCounter(counter) {
+     $('#count').text(counter);
+        counter++;
 }
-function guessCount(){
-	count++;
+
+//show history of all the guesses
+function guessHistory(userGuess) {
+    $('#guessList').append('<li>' + userGuess + '</li>');
 }
 
 	}
