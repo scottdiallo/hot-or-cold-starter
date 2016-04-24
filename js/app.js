@@ -70,11 +70,6 @@ $(document).ready(function() {
 		 }
 	 }
 
-	// 		$('#feedback').text('you must choose a number 1 - 100');
-	// 	}
-	// }
-	// console.log();
-
 // tracking guesses and listing them
 function trackGuess(){
 	pastGuess[0].push(userGuess);
@@ -89,45 +84,6 @@ function trackGuess(){
 function guessCount(){
 	count++;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	}
     newGame();
