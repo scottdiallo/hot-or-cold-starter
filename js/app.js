@@ -4,7 +4,9 @@ $(document).ready(function() {
     var guess;
     var guessCounter;
     var userGuess;
-	var pastGuess = userGuess;
+	var pastGuess = [];
+	var guessList;
+	var guessHmtl;
 
     // start a new game
     newGame();
@@ -38,14 +40,14 @@ $(document).ready(function() {
 		checkGuess();
 
     });
-
+//convert userguess to integer and generate feedback based on guess
 	function checkGuess() {
 		var userGuess = parseInt($("#userGuess").val());
+		verifyNumber();
 		console.log(userGuess);
 		console.log(secretNumber);
-
 		if (userGuess === secretNumber){
-			$('#feedback').text('You got it!');
+			$('#feedback').text('You nailed it! click New Game to start a new game');
 		}
 		else if (userGuess >= secretNumber -10 && userGuess <= secretNumber +10 ) {
 			$('#feedback').text('Very hot!');
@@ -61,24 +63,77 @@ $(document).ready(function() {
 		}
 		else  {
 			$('#feedback').text('Ice Cold!');
-		}
+	}
+	function verifyNumber(){
+		 if (userGuess < 0 || userGuess > 100){
+			 alert('you must type a number between 1 - 100');
+		 }
+	 }
+
+	// 		$('#feedback').text('you must choose a number 1 - 100');
+	// 	}
+	// }
+	// console.log();
+
+// tracking guesses and listing them
+function trackGuess(){
+	pastGuess[0].push(userGuess);
+	guessHmtl = '';
+	if(pastGuess[0].length){
+		$.each(pastGuess,
+			function(guess,value){
+			guessHmtl += '<li>' + value + '</li>';
+		});
+	}
+}
+function guessCount(){
+	count++;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	}
     newGame();
 
     function newGame() {
 
-
-        // switch (checkGuess){
-        //     case: [1 >= 10]
-        //     var msg1 = "Very Hot";
-        //         console.log(msg1);
-        //         break;
-        //     case [10..20]:
-        //         text = "warm";
-        //         break;
-        //     default:
-        //         text = "Looking forward to the Weekend";
-        // }
 
     }
 });
