@@ -28,7 +28,7 @@ $(document).ready(function () {
 
     $(".new").click(function () {
         newGame();
-        autoFocus(); //not working ****using html autofocus as alternative
+        autoFocus(); // Not working ****using html autofocus as alternative
 
     });
     $("#guessButton").click(function () {
