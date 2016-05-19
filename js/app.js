@@ -1,7 +1,3 @@
-//empty input field after guess btn click
-//alert for input than are not numbers
-//
-
 $(document).ready(function () {
     //Global variables declarations
     var secretNumber = Math.floor(Math.random() * 100) + 1;
@@ -10,8 +6,12 @@ $(document).ready(function () {
     var userGuess;
     var guessList;
     var counter = 0;
-
-    // start a new game
+    //set auto-focus to text box
+    var autoFocus = function setAutoFocusToTextBox() {
+            document.getElementById('#userGuess').autofocus();
+            console.log('atuoFocus');
+        }
+        // start a new game
 
 
 
@@ -28,19 +28,21 @@ $(document).ready(function () {
 
     $(".new").click(function () {
         newGame();
+        autoFocus(); //not working ****using html autofocus as alternative
+
     });
     $("#guessButton").click(function () {
         var userGuess = $("#userGuess").val();
         checkGuess(userGuess);
         $('#userGuess').val(''); //reset input field when btn's press
-
     });
+
     //convert userguess to integer and generate feedback based on guess
     function checkGuess(userGuess) {
         if (isNaN(userGuess)) {
             alert('Come on yooo ENTER a number');
         } else if (userGuess % 1 !== 0) { //avoid decimal num
-            alert('No decimal number');
+            alert('Decimal number are NOT allowed');
         } else if (userGuess < 1 || userGuess > 100) {
             alert('you must type a number between 1 - 100');
         } else {
