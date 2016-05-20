@@ -2,7 +2,7 @@ $(document).ready(function () {
     //Global variables declarations
     var secretNumber = Math.floor(Math.random() * 100) + 1;
     var guess;
-    var oldGuess = 0;
+    var oldGuess = userGuess;
     var userGuess;
     var guessList;
     var counter = 0;
@@ -18,7 +18,7 @@ $(document).ready(function () {
 
     /*--- Display information modal box ---*/
     $(".what").click(function () {
-        $(".overlay").fadeIn(1000);
+        $(".overlay").fadeToggle(2000);
 
     });
 
