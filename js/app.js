@@ -6,6 +6,7 @@ $(document).ready(function () {
     var userGuess;
     var guessList;
     var counter = 0;
+    var newGuess = userGuess;
     //set auto-focus to text box
     var autoFocus = function setAutoFocusToTextBox() {
             document.getElementById('#userGuess').autofocus();
@@ -52,9 +53,10 @@ $(document).ready(function () {
             showGuessCounter(counter);
             console.log(userGuess);
             console.log(secretNumber);
-
-            if (userGuess === secretNumber) {
+            // feedback based on user guess
+            if (userGuess == secretNumber) {
                 $('#feedback').text('You nailed it! click New Game to play again');
+                $('#guessButton').hide(); // guess button when user win which forces them to click new btn
             } else if (userGuess >= secretNumber - 10 && userGuess <= secretNumber + 10) {
                 $('#feedback').text('Very hot!');
             } else if (userGuess >= secretNumber - 20 && userGuess <= secretNumber + 20) {
@@ -66,7 +68,22 @@ $(document).ready(function () {
             } else {
                 $('#feedback').text('Ice Cold!');
             }
+
         }
+
+        //function to tell whether user previous guess is closer or farther than current guess
+        function closeOrfarFeedback(secretNumber, oldGuess, userGuess) {
+            var oldDiff = Math.abs(parseInt(secretNumber) - parseInt(oldGuess));
+            var newDiff = Math.abs(parseInt(secretNumber) - parseInt(userGuess));
+            if (newDiff > oldDiff) {
+                $('#closeOrfarFeedback').text('your colder than the last guess');
+            } else if (newDiff === oldDiff) {
+                $('#closeOrfarFeedback').text('Your are as far as your previous guess');
+            } else {
+                $('#closeOrfarFeedback').text('You are hotter than your previous guess ', ' keep on');
+            }
+        }
+        //        console.log('hey');
     };
 
 
